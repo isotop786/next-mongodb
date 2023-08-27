@@ -5,8 +5,8 @@ import {HiPencilAlt} from 'react-icons/hi'
 
 const getTopics = async ()=>{
     try{
-        // const res = await fetch('https://next-mongodb-zysg.vercel.app/api/topics/')
-        const res = await fetch('http://localhost:3000/api/topics', {cache:"no-store"})
+        const res = await fetch('https://next-mongodb-zysg.vercel.app/api/topics/')
+        // const res = await fetch('http://localhost:3000/api/topics', {cache:"no-store"})
 
         if(!res.ok)
         {
@@ -37,7 +37,7 @@ const TopicList = async () => {
             </div>
 
             <div className='flex justify-between items-center'>
-                <RemoveBtn id={t._id}/>
+                <RemoveBtn/>
                 <Link className='px-2' title='Edit' href={`/editTopic/${t._id}`}><HiPencilAlt size={24} /></Link>
             </div>
         </div>
