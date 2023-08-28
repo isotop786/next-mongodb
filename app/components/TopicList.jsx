@@ -5,7 +5,7 @@ import {HiPencilAlt} from 'react-icons/hi'
 
 const getTopics = async ()=>{
     try{
-        const res = await fetch('https://next-mongodb-zysg.vercel.app/api/topics/')
+        const res = await fetch('https://next-mongodb-zysg.vercel.app/api/topics/',{cache:'no-store', revalidate:0 })
         // const res = await fetch('http://localhost:3000/api/topics', {cache:"no-store"})
 
         if(!res.ok)
@@ -19,6 +19,7 @@ const getTopics = async ()=>{
     {
         console.log("topics fetching error is:"+err)
     }
+
 }
 
 const TopicList = async () => {
@@ -30,10 +31,10 @@ const TopicList = async () => {
     {topics.map((t)=>(
         <div key={t._id} className='
         p-4 border border-slate-300
-        flex justify-between gap-5 items-start content-center px-3 py-2 my-2 bg-lime-50'>
+        flex justify-between gap-5 items-start content-center px-3 py-2 my-2 bg-gray-600 text-slate-300'>
             <div>
                 <h2 className='font-bold text-2xl'>{t.title}</h2>
-                <div>Topic Description</div>
+                <div>{t.description}</div>
             </div>
 
             <div className='flex justify-between items-center'>
@@ -46,5 +47,6 @@ const TopicList = async () => {
     </>
   )
 }
-
 export default TopicList
+
+export const revalidate = 0
